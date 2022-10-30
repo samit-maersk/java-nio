@@ -1,109 +1,61 @@
-### [java.io, java.nio & nio.2](https://docs.oracle.com/javase/8/docs/technotes/guides/io/index.html)
+## [java.io, java.nio & nio.2](https://docs.oracle.com/javase/8/docs/technotes/guides/io/index.html)
 
-### I/O Streams
-  - **Byte Streams**
-  >Programs use byte streams to perform input and output of 8-bit bytes. All byte stream classes are descended from InputStream and OutputStream.
+### java.io
+- Was introduce in java 1.0
+- blocking I/O
+- api are:
+  - Byte Stream
   ```
-  public static void main(String[] args) throws IOException {
-
-        FileInputStream in = null;
-        FileOutputStream out = null;
-
-        try {
-            in = new FileInputStream("xanadu.txt");
-            out = new FileOutputStream("outagain.txt");
-            int c;
-
-            while ((c = in.read()) != -1) {
-                out.write(c);
-            }
-        } finally {
-            if (in != null) {
-                in.close();
-            }
-            if (out != null) {
-                out.close();
-            }
-        }
+  FileInputStream in = new FileInputStream("xanadu.txt");
+  FileOutputStream out = new FileOutputStream("outagain.txt");
+  int c;
+  while ((c = in.read()) != -1) {
+    out.write(c);
+  }
   ```
-  
-  - **Character Streams**
-  > The Java platform stores character values using Unicode conventions. Character stream I/O automatically translates this internal format to and from the local character set
+  - Character Stream
   ```
-  public static void main(String[] args) throws IOException {
-
-        FileReader inputStream = null;
-        FileWriter outputStream = null;
-
-        try {
-            inputStream = new FileReader("xanadu.txt");
-            outputStream = new FileWriter("characteroutput.txt");
-
-            int c;
-            while ((c = inputStream.read()) != -1) {
-                outputStream.write(c);
-            }
-        } finally {
-            if (inputStream != null) {
-                inputStream.close();
-            }
-            if (outputStream != null) {
-                outputStream.close();
-            }
-        }
-    }
+  FileReader inputStream = new FileReader("xanadu.txt");
+  FileWriter outputStream = new FileWriter("characteroutput.txt");
+  int c;
+  while ((c = inputStream.read()) != -1) {
+    outputStream.write(c);
+  }
   ```
-  - **Buffered Streams**
-  > Most of the examples we've seen so far use unbuffered I/O. This means each read or write request is handled directly by the underlying OS. This can make a program much less efficient, since each such request often triggers disk access, network activity, or some other operation that is relatively expensive.To reduce this kind of overhead, the Java platform implements buffered I/O streams. Buffered input streams read data from a memory area known as a buffer; the native input API is called only when the buffer is empty. Similarly, buffered output streams write data to a buffer, and the native output API is called only when the buffer is full.
-    ```
-    inputStream = new BufferedReader(new FileReader("xanadu.txt"));
-    outputStream = new BufferedWriter(new FileWriter("characteroutput.txt"));
-    ```
-  - **Scanning and Formatting**
-    > Programming I/O often involves translating to and from the neatly formatted data humans like to work with
-    - Scanning
-    ```
-        public static void main(String[] args) throws IOException {
+  - Buffer Stream
+  ```
+  inputStream = new BufferedReader(new FileReader("xanadu.txt"));
+  outputStream = new BufferedWriter(new FileWriter("characteroutput.txt"));
+  ```
+  - Scanning & Formatting
+  ```
+  new Scanner(new BufferedReader(new FileReader("xanadu.txt")));
+  ```
 
-        Scanner s = null;
+## java.nio 
+- Was introduce in java 1.4
+- non-blocking I/O
 
-        try {
-            s = new Scanner(new BufferedReader(new FileReader("xanadu.txt")));
+## java.nio (nio.2)
+- java.nio 2.0 was introduced with java 1.7
+- NIO.2 is also know as JSR 203
+- async approach to non-blocking I/O
+- In old versions, you could use the java.io.File to handle files. But there were problems with symbolic link, attributes, performance. The Java 1.4 introduced the NIO API, but it was not enough to solve the problems. The version 7 brings the NIO.2 API such a solution to help in the support to manipulate files and directories. 
+- Instead to use java.io.File, now you can use java.nio.file package (Path, Paths, and Files).
+- Some of the most usful api are:
+  - Path (interface)
+  - Paths (class)
+  - Files (class)
+  - AsynchronousFileChannel
+  - AsynchronousSocketChanel
+  - WatchService (Interface)
+  - FileVisitor (Interface)
+  - PathMatcher (Functional Interface)
 
-            while (s.hasNext()) {
-                System.out.println(s.next());
-            }
-        } finally {
-            if (s != null) {
-                s.close();
-            }
-        }
-    }
-    ```
-    - Formatting
-    > Stream objects that implement formatting are instances of either PrintWriter, a character stream class, or PrintStream, a byte stream class.
-    ```
-    public static void main(String[] args) {
-        int i = 2;
-        double r = Math.sqrt(i);
-        
-        System.out.print("The square root of ");
-        System.out.print(i);
-        System.out.print(" is ");
-        System.out.print(r);
-        System.out.println(".");
 
-        i = 5;
-        r = Math.sqrt(i);
-        System.out.println("The square root of " + i + " is " + r + ".");
-    }
-    ```
-  - I/O from the Command Line
-    - Data Streams 
-    >Data streams support binary I/O of primitive data type values (boolean, char, byte, short, int, long, float, and double) as well as String values. All data streams implement either the DataInput interface or the DataOutput interface. This section focuses on the most widely-used implementations of these interfaces, DataInputStream and DataOutputStream.
-    - Object Streams
-    >Just as data streams support I/O of primitive data types, object streams support I/O of objects. Most, but not all, standard classes support serialization of their objects. Those that do implement the marker interface Serializable.
-    
+
+
+
 
 
 
