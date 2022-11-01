@@ -1,5 +1,5 @@
 ### agenda
-In this Java Chapter, we'll cover Java File IO functionalities and how they changed throughout different Java versions. First, we'll cover the java.io package from the initial Java version. Next, we'll go over java.nio package introduced in Java 1.4. In the end, we'll cover the java.nio.file package, commonly known as the NIO.2 package
+In this Java Chapter, we'll cover Java File IO functionalities and how they changed throughout different Java versions. First, we'll cover the `java.io` package from the initial Java version. Next, we'll go over `java.nio` package introduced in Java 1.4. In the end, we'll cover the `java.nio.file` package, commonly known as the NIO.2 package
 
 - [java.io, java.nio & nio.2 api](https://docs.oracle.com/javase/8/docs/technotes/guides/io/index.html)
 
@@ -10,8 +10,8 @@ In this Java Chapter, we'll cover Java File IO functionalities and how they chan
   File file = new File("src/test/resources/nio-vs-nio2.txt");
   FileInputStream in = new FileInputStream(file);
   ```
-- It was possible to create and delete files, check if they exist, check read/write access, etc.
-- To read and write we need to use below File I/O stream:
+- With Old java.io , It was possible to create and delete files, check if they exist, check read/write access, etc.
+- Examples:
   - Byte Stream
   ```
   FileInputStream in = new FileInputStream("xanadu.txt");

@@ -216,7 +216,7 @@ public class Nio2FilesTest {
 
     @Test
     @DisplayName("FilesWatcher")
-    @Disabled
+    //@Disabled
     void testSix() throws Exception {
         WatchService watchService = FileSystems.getDefault().newWatchService();
         Path path = Paths.get(".");
