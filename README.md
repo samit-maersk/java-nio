@@ -85,16 +85,15 @@ In this Java Chapter, we'll cover Java File IO functionalities and how they chan
   - Path, and 
   - Paths classes. 
 - along with that there are many more enhancement around NIO 2.0 api like : 
-  - AsynchroniousFileChannel and 
-  - AsyncroniousSocketChannel.
-- Lets deep dive around:
+  - AsynchronousFileChannel and 
+  - AsynchronousSocketChannel.
+
+### Lets deep dive around:
   - Path (interface)
   - Paths (class)
   - Files (class)
   - AsynchronousFileChannel
-  - AsynchronousSocketChanel
-  - AsynchronousServerSocketChannel
   - WatchService (Interface)
   - FileVisitor (Interface)
   - PathMatcher (Functional Interface)
-  - [junit with File I/O](https://blogs.oracle.com/javamagazine/post/working-and-unit-testing-with-temporary-files-in-java)
+  - During the demo will leverage [junit with File I/O](https://blogs.oracle.com/javamagazine/post/working-and-unit-testing-with-temporary-files-in-java) to test file system.
